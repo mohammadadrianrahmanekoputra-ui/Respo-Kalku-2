@@ -1,491 +1,254 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Kuis Kalkulus – Adrian</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booklet Peraturan Math League 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- MathJax for LaTeX -->
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        body {
+            /* Menggunakan Font Poppins */
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            
+            /* PENGATURAN BACKGROUND SESUAI FILE ANDA */
+            background-image: url('Grand opening.jpg'); 
+            background-size: cover;       /* Gambar memenuhi layar */
+            background-position: center;  /* Gambar di tengah */
+            background-attachment: fixed; /* Background tetap diam saat discroll */
+            background-repeat: no-repeat;
+            
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<style>
-  :root{
-    --bg:#0d1117;
-    --card:#161b22;
-    --muted:#8b949e;
-    --accent:#58a6ff;
-    --ok:#16a34a;
-    --bad:#ef4444;
-    --glass: rgba(255,255,255,0.02);
-  }
+        /* Container utama untuk membatasi lebar konten */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:var(--bg);
-    color:#e6edf3;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.4;
-  }
+        /* Judul Utama Halaman */
+        .main-title {
+            text-align: center;
+            color: #0d7014;
+            text-shadow: 2px 2px 4px rgba(210, 195, 195, 0.812);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding-top: 20px;
+        }
 
-  header{padding:28px 16px 8px; text-align:center}
-  h1{margin:0; color:var(--accent); font-size:1.6rem}
-  p.lead{margin:8px 0 0; color:var(--muted); font-size:0.95rem}
+        /* Desain "Kartu" atau Halaman Booklet */
+        .booklet-page {
+            /* Latar belakang putih semi-transparan agar teks terbaca */
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
 
-  .wrap{max-width:880px; margin:28px auto; padding:0 16px;}
+        /* Tipografi Headings */
+        h2 {
+            color: #2c5e2e; /* Warna hijau tua menyesuaikan tema alam */
+            border-bottom: 2px solid #2c5e2e;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
 
-  .card{
-    background:linear-gradient(180deg,var(--card), rgba(22,27,34,0.88));
-    border:1px solid rgba(255,255,255,0.03);
-    padding:18px;
-    border-radius:14px;
-    box-shadow: 0 6px 24px rgba(2,6,23,0.6);
-    margin-bottom:18px;
-    transition:transform .22s ease, box-shadow .22s ease;
-  }
-  .card:hover{transform:translateY(-6px); box-shadow:0 12px 36px rgba(2,6,23,0.75);}
+        h3 {
+            color: #387c3b;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
 
-  .q-title{color:#79c0ff; font-weight:600; margin-bottom:10px; font-size:1rem}
-  .options{display:block; margin:6px 0 0}
-  .option{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:12px;
-    padding:10px 12px;
-    margin-bottom:8px;
-    background:var(--glass);
-    border-radius:10px;
-    border:1px solid rgba(255,255,255,0.02);
-    cursor:pointer;
-    transition:all .18s ease;
-    user-select:none;
-  }
-  .option:hover{transform:translateY(-4px)}
-  .option input{display:none;}
+        /* Tipografi Paragraf dan List */
+        p {
+            margin-bottom: 15px;
+        }
 
-  /* selection highlight before submit */
-/* Highlight selected option before submit */
-   .option.selected {
-     outline: 2px solid #58a6ff; /* bright blue border */
-     background: rgba(88,166,255,0.1); /* slightly brighter */
-     transform: scale(1.03); /* pop out a bit */
-     box-shadow: 0 4px 12px rgba(88,166,255,0.3);
-  }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
 
+        li {
+            margin-bottom: 8px;
+        }
 
-  /* after submit: correct / wrong */
-  .option.correct{
-    background: linear-gradient(90deg, rgba(16,185,129,0.08), rgba(16,185,129,0.03));
-    border:1px solid rgba(16,185,129,0.25);
-    box-shadow: 0 6px 20px rgba(16,185,129,0.05) inset;
-  }
-  .option.wrong{
-    background: linear-gradient(90deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02));
-    border:1px solid rgba(239,68,68,0.22);
-    box-shadow: 0 6px 20px rgba(239,68,68,0.04) inset;
-  }
+        /* Highlight untuk tenggat waktu atau link */
+        .highlight {
+            font-weight: 600;
+            color: #d35400;
+        }
+        
+        .link-text {
+             color: #0056b3;
+             text-decoration: underline;
+        }
 
-  .explain{
-    margin-top:10px;
-    padding:12px;
-    border-left:4px solid var(--accent);
-    background: rgba(13,17,23,0.9);
-    border-radius:8px;
-    display:none;
-    color:#dbeafe;
-    font-size:0.95rem;
-  }
-
-  .controls{display:flex; gap:12px; align-items:center; margin-top:10px; flex-wrap:wrap}
-  .btn{
-    appearance:none; border:0; padding:10px 14px; border-radius:10px; cursor:pointer;
-    font-weight:600; letter-spacing:.2px;
-  }
-  .btn.primary{background:linear-gradient(90deg,var(--accent),#2ea6ff); color:#041129}
-  .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted)}
-  .result{
-    margin-top:18px; padding:14px; border-radius:12px; text-align:center;
-    background: linear-gradient(90deg, rgba(88,166,255,0.03), rgba(88,166,255,0.01));
-    border:1px solid rgba(88,166,255,0.06);
-    font-size:1.05rem;
-    transform-origin:center;
-    animation: pop .35s ease both;
-  }
-
-  @keyframes pop{
-    from{transform:scale(.92); opacity:0} to{transform:scale(1); opacity:1}
-  }
-
-  footer{color:var(--muted); text-align:center; margin:34px 0 60px; font-size:0.93rem}
-  small.help{display:block; color:var(--muted); margin-top:6px; font-size:0.86rem}
-
-  /* responsive */
-  @media (max-width:520px){
-    .q-title{font-size:0.97rem}
-    .option{padding:10px}
-  }
-  /* LIGHT MODE ================================================== */
-  .light-mode {
-      background-color: white;
-      color: black;
-  }
-  
-  .light-mode .card {
-    background: white;
-    border: 1px solid #ddd;
-    color: black;
-  }
-
-  .light-mode #question-box {
-      background-color: white;
-      color: black;
-      border-color: black;
-  }
-  
-  .light-mode .option {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
-  }
-  
-  /* keep indicators the same */
-  .correct {
-      background-color: green !important;
-      color: white !important;
-  }
-  
-  .wrong {
-      background-color: red !important;
-      color: white !important;
-  }
-
-  /* ======== SLIDER TOGGLE ======== */
-.switch {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 26px;
-  display: inline-block;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #444; /* dark */
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #ccc; /* light */
-}
-
-input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
-</style>
+        /* Responsif untuk layar kecil (HP) */
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .booklet-page {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <h1>Kuis Kalkulus</h1>
-  <p class="lead">Pilih jawaban untuk setiap soal, lalu tekan <strong>Submit All</strong></p>
-  <label class="switch">
-    <input type="checkbox" id="modeToggle">
-    <span class="slider">
-        <span class="icon sun">☀️</span>
-        <span class="icon moon">🌙</span>
-    </span>
-  </label>
 
+<div class="container">
+    <h1 class="main-title">PERATURAN LOMBA KEILMUAN<br>MATH LEAGUE 2026</h1>
 
-</header>
+    <div class="booklet-page">
+        <h2>ESAI KREATIF</h2>
 
-<main class="wrap">
-  <!-- QUESTION 1 -->
-  <div class="card" data-q="1">
-    <div class="q-title">1. Diberikan fungsi \( y = x^{f(x)} \) untuk \( x > 0 \). Turunan dari fungsi tersebut adalah:</div>
+        <h3>KETENTUAN UMUM</h3>
+        <ul>
+            <li>Lomba ini merupakan lomba esai kreatif individu dengan tema <strong>“World Expo 2026: The Grand Olympics of Mind, Art, and Strength”</strong>.</li>
+            <li>Setiap angkatan diperbolehkan mengirimkan satu atau lebih peserta untuk mengikuti lomba ini.</li>
+            <li>Peserta mendaftar dan berpartisipasi secara individu, tidak diperkenankan membentuk tim.</li>
+            <li>Peserta diperbolehkan melakukan perubahan data diri selama masa pendaftaran berlangsung. Setelah ditutup, data bersifat final.</li>
+            <li>Peserta wajib berasal dari salah satu program studi di Departemen Matematika FMIPA UI.</li>
+            <li>Setiap peserta hanya diperkenankan mengumpulkan satu karya esai kreatif.</li>
+        </ul>
 
-    <div class="options" data-name="q1">
-      <label class="option" data-choice="a">
-        <span>a) \( x^{f(x)-1}(xf'(x)+f(x)) \)</span>
-        <input type="radio" name="q1" value="a">
-      </label>
+        <h3>TOPIK DAN TEMA</h3>
+        <p>Topik besar esai adalah <strong>“Peran Kecerdasan Buatan dalam Membentuk Masa Depan Peradaban Global”</strong>. Esai diharapkan mampu merefleksikan keterkaitan kecerdasan buatan dengan aspek intelektual (mind), kreativitas dan budaya (art), serta ketangguhan dan kekuatan manusia (strength).</p>
+        <p>Penilaian didasarkan pada orisinalitas gagasan, kedalaman analisis, kreativitas penyampaian, dan kesesuaian dengan tema.</p>
 
-      <label class="option" data-choice="b">
-        <span>b) \( f(x)x^{f(x)-1} + x^{f(x)}\ln x \)</span>
-        <input type="radio" name="q1" value="b">
-      </label>
-
-      <label class="option" data-choice="c">
-        <span>c) \( x^{f(x)}\left(f'(x)\ln x + \frac{f(x)}{x}\right) \)</span>
-        <input type="radio" name="q1" value="c">
-      </label>
-
-      <label class="option" data-choice="d">
-        <span>d) \( x^{f(x)-1}f'(x) \)</span>
-        <input type="radio" name="q1" value="d">
-      </label>
+        <h3>TEKNIS PENULISAN DAN PENGUMPULAN</h3>
+        <ul>
+            <li>Bahasa Indonesia yang baik dan benar (PUEBI).</li>
+            <li>Orisinil, belum pernah dipublikasikan atau menang lomba lain.</li>
+            <li>Panjang: 1.500–2.000 kata (termasuk cover, isi, daftar referensi).</li>
+            <li>Format: Kertas A4, Spasi 1.5, Font Times New Roman ukuran 12.</li>
+            <li>Margin: Kiri 4 cm, Kanan 3 cm, Atas 3 cm, Bawah 3 cm.</li>
+            <li>Wajib mencantumkan Cover (Nama, Prodi/Angkatan, Tema Besar, Topik Esai, Judul Esai).</li>
+            <li>Wajib mencantumkan daftar referensi yang kredibel di halaman terakhir.</li>
+            <li>Nomor halaman di sudut kanan bawah.</li>
+            <li>Pengumpulan: File PDF melalui <span class="link-text">https://bit.ly/SubmisiEsaiKreatifMathLeague2026</span>.</li>
+            <li>Batas waktu: <span class="highlight">Jumat, 23 Januari 2026 pukul 23.59 WIB.</span></li>
+            <li>Format nama file: <code>EsaiKreatif_MathLeague2026_Angkatan_NamaLengkap.pdf</code></li>
+        </ul>
     </div>
 
-    <div id="ex1" class="explain">
-      Ambil logaritma: \( \ln y = f(x)\ln x \). Turunkan: \( \frac{y'}{y} = f'(x)\ln x + \frac{f(x)}{x} \). Jadi \( y' = x^{f(x)}\left(f'(x)\ln x + \frac{f(x)}{x}\right) \).
-    </div>
-  </div>
+    <div class="booklet-page">
+        <h2>POSTER ILMIAH</h2>
 
-  <!-- QUESTION 2 -->
-  <div class="card" data-q="2">
-    <div class="q-title">2. Manakah pernyataan yang benar tentang grafik fungsi \( f \) dan inversnya \( f^{-1} \)?</div>
+        <h3>TEMA</h3>
+        <p><strong>"Simple Math, World Changing Results"</strong></p>
+        <p>Isi utama membahas bagaimana suatu konsep sederhana dalam matematika dapat mengubah cara dunia bekerja. Fokus pada perbandingan sistem/kehidupan global dengan dan tanpa adanya konsep tersebut.</p>
 
-    <div class="options" data-name="q2">
-      <label class="option" data-choice="a">
-        <span>a) Grafiknya selalu tegak lurus</span>
-        <input type="radio" name="q2" value="a">
-      </label>
+        <h3>KETENTUAN UMUM</h3>
+        <ul>
+            <li>Perwakilan angkatan: Minimal 1 orang, Maksimal 3 orang per angkatan (Setiap orang hanya 1 poster).</li>
+            <li>Karya wajib orisinal (belum pernah dipublikasikan/menang lomba). Plagiarisme akan didiskualifikasi.</li>
+            <li>Dilarang mengandung unsur SARA, pornografi, provokasi, kekerasan, atau politik.</li>
+            <li>Wajib disertai deskripsi (narasi) minimal 100 kata dan maksimal 300 kata.</li>
+        </ul>
 
-      <label class="option" data-choice="b">
-        <span>b) Grafiknya simetris terhadap garis \( y=x \)</span>
-        <input type="radio" name="q2" value="b">
-      </label>
+        <h3>FORMAT POSTER</h3>
+        <ul>
+            <li>Digital (Corel Draw, Photoshop, Illustrator, dll).</li>
+            <li>Ukuran: 3508 × 4961 pixels (Setara A3, 150 ppi). Ukuran yang salah akan dikembalikan untuk revisi (24 jam).</li>
+            <li>Format: Portrait.</li>
+            <li>Daftar pustaka diletakkan di bagian bawah poster (Wajib ada referensi untuk data/gambar).</li>
+        </ul>
 
-      <label class="option" data-choice="c">
-        <span>c) Selalu berpotongan di dua titik</span>
-        <input type="radio" name="q2" value="c">
-      </label>
+        <h3>MEKANISME PERLOMBAAN</h3>
+        <p>Terdiri dari 3 tahap: Seleksi Berkas, Voting Online, dan Presentasi.</p>
 
-      <label class="option" data-choice="d">
-        <span>d) Tidak ada hubungan khusus</span>
-        <input type="radio" name="q2" value="d">
-      </label>
-    </div>
+        <h4>1. Tahap Seleksi Berkas</h4>
+        <ul>
+            <li>Upload ke: <span class="link-text">https://bit.ly/SubmisiPosterIlmiahMathLeague2026</span></li>
+            <li>Batas submisi: <span class="highlight">Rabu, 21 Januari 2026 pukul 23:59 WIB.</span></li>
+            <li>Wajib konfirmasi ke LO setelah pengumpulan.</li>
+            <li>Keterlambatan: Pengurangan 5 poin/jam. Terlambat > 6 jam = Diskualifikasi.</li>
+            <li>File yang dikirim (2 buah):
+                <ol>
+                    <li>File poster (JPG/JPEG/PNG) nama: <code>Berkas_Poster_Angkatan_Nama Lengkap</code></li>
+                    <li>File narasi (PDF, max 500 kata) nama: <code>Berkas_Narasi_Angkatan_Nama Lengkap</code></li>
+                </ol>
+            </li>
+            <li>4 peserta terbaik lanjut ke tahap presentasi.</li>
+        </ul>
 
-    <div id="ex2" class="explain">
-      Grafik \( f \) dan \( f^{-1} \) selalu simetris terhadap garis \( y=x \). Jika \( (a,b) \in f \), maka \( (b,a) \in f^{-1} \).
-    </div>
-  </div>
+        <h4>2. Tahap Online Voting (Juara Favorit)</h4>
+        <ul>
+            <li>Dilakukan di Instagram Math League 2026.</li>
+            <li>Unggah poster: Selasa, 27 Januari 2026 pukul 12.00 WIB (Identitas disembunyikan).</li>
+            <li>Periode voting: 7 hari sejak diunggah.</li>
+            <li>Juara favorit berdasarkan likes terbanyak (tidak mempengaruhi penilaian juara utama).</li>
+        </ul>
 
-  <!-- QUESTION 3 -->
-  <div class="card" data-q="3">
-    <div class="q-title">3. Pernyataan benar tentang fungsi \( \operatorname{arccot} x \) adalah …</div>
-
-    <div class="options" data-name="q3">
-      <label class="option" data-choice="a">
-        <span>a) I saja</span>
-        <input type="radio" name="q3" value="a">
-      </label>
-
-      <label class="option" data-choice="b">
-        <span>b) I, II</span>
-        <input type="radio" name="q3" value="b">
-      </label>
-
-      <label class="option" data-choice="c">
-        <span>c) II, IV</span>
-        <input type="radio" name="q3" value="c">
-      </label>
-
-      <label class="option" data-choice="d">
-        <span>d) I, III, IV</span>
-        <input type="radio" name="q3" value="d">
-      </label>
+        <h4>3. Tahap Presentasi</h4>
+        <ul>
+            <li>Peserta lolos wajib mengirim file presentasi (PDF dari PPT) ke link Google Forms (TBA).</li>
+            <li>Batas pengumpulan file presentasi: <span class="highlight">Senin, 26 Januari 2026 pukul 23.59 WIB.</span></li>
+            <li>Nama file: <code>Presentasi_Poster_Angkatan_Nama Lengkap</code>.</li>
+            <li>Keterlambatan file: -5 poin/jam. Terlambat > 6 jam tidak boleh presentasi.</li>
+            <li>Durasi: 10 menit pemaparan + 10 menit tanya jawab.</li>
+            <li>Wajib mengenakan jaket almamater (jakun).</li>
+        </ul>
     </div>
 
-    <div id="ex3" class="explain">
-      I salah (arccot berarti \( \cot y = x \)). II benar (domain seluruh bilangan real). III salah (range biasanya \( (0,\pi) \)). IV benar (arccot 0 = \( \pi/2 \)). Jadi benar: II dan IV.
+    <div class="booklet-page">
+        <h2>PROGRAM KREATIVITAS MAHASISWA (PKM)</h2>
+
+        <h3>A. KETENTUAN UMUM</h3>
+        <ul>
+            <li>Setiap angkatan wajib mengirimkan minimal 3 tim PKM pada cabang berbeda.</li>
+            <li>Satu tim terdiri atas 3–5 mahasiswa satu angkatan (boleh beda program studi di Dept. Matematika).</li>
+            <li>Setiap tim hanya mengajukan satu judul. Anggota hanya boleh jadi ketua di satu cabang.</li>
+            <li>Karya harus orisinal, belum pernah dipublikasikan, belum pernah juara di tingkat setara/lebih tinggi (OIM, PIMNAS, dll), dan belum pernah didanai pemerintah.</li>
+            <li>Lomba terdiri dari 2 tahap: Seleksi Berkas (Proposal) dan Presentasi.</li>
+            <li>Seluruh pemenang wajib lanjut ke PIMNAS jika dinilai berpotensi oleh juri.</li>
+        </ul>
+
+        <h3>B. TAHAP SELEKSI BERKAS (PROPOSAL)</h3>
+        <ul>
+            <li>Mencantumkan nama lengkap dan NPM seluruh anggota.</li>
+            <li>Maksimal 10 halaman (Pendahuluan s.d. Daftar Pustaka).</li>
+            <li>Sistematika sesuai Pedoman PKM Math League 2026. Cover mencantumkan lambang UI.</li>
+            <li>Format nama file: <code>Berkas_Cabang PKM_Tahun Angkatan_Nama Lengkap Ketua</code>.</li>
+            <li>Keterlambatan: -5 poin/jam. Lebih dari 6 jam = Gugur.</li>
+            <li>Juri memilih maksimal 4 tim terbaik per cabang untuk lanjut ke presentasi.</li>
+        </ul>
+
+        <h3>C. TAHAP PRESENTASI</h3>
+        <ul>
+            <li>Tim lolos wajib mengumpulkan berkas presentasi (PDF) sesuai tenggat waktu. Ketua wajib konfirmasi ke LO.</li>
+            <li>Minimal 2 anggota tim wajib hadir. Wajib mengenakan jaket almamater.</li>
+            <li>Keterlambatan pengumpulan file: -5 poin/jam. Lebih dari 10 jam = Diskualifikasi.</li>
+            <li>Peserta terlambat hadir tanpa alasan yang diterima = Nilai 0. Terlambat dengan alasan diterima = Pengurangan nilai 10%.</li>
+            <li>Waktu: 10 menit pemaparan + 10 menit tanya jawab.</li>
+        </ul>
     </div>
-  </div>
+    
+    <p style="text-align: center; color: white; font-size: 0.9rem; margin-top: 20px;">&copy; Math League 2026 Committee</p>
 
-  <!-- QUESTION 4 -->
-  <div class="card" data-q="4">
-    <div class="q-title">4. Pernyataan benar tentang fungsi hiperbolik berikut adalah …</div>
+</div>
 
-    <div class="options" data-name="q4">
-      <label class="option" data-choice="a">
-        <span>a) I saja</span>
-        <input type="radio" name="q4" value="a">
-      </label>
-
-      <label class="option" data-choice="b">
-        <span>b) I, II</span>
-        <input type="radio" name="q4" value="b">
-      </label>
-
-      <label class="option" data-choice="c">
-        <span>c) III, IV</span>
-        <input type="radio" name="q4" value="c">
-      </label>
-
-      <label class="option" data-choice="d">
-        <span>d) II, III, IV</span>
-        <input type="radio" name="q4" value="d">
-      </label>
-    </div>
-
-    <div id="ex4" class="explain">
-      I salah (tanh adalah fungsi ganjil). II salah (sech adalah genap). III benar (\( \cosh^2 x = 1 + \sinh^2 x \)). IV benar (cosh genap → simetri sumbu-y). Jadi benar: III dan IV.
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <div style="display:flex;align-items:center;gap:12px;margin-top:8px">
-    <button id="submitBtn" class="btn primary">Submit All</button>
-    <button id="resetBtn" class="btn ghost">Reset</button>
-    <small class="help">Penjelasan akan muncul setelah submit. Pilih satu jawaban per soal.</small>
-  </div>
-
-  <!-- Result -->
-  <div id="resultWrap" style="margin-top:16px"></div>
-
-</main>
-
-<footer>Created by Adrian · 2025</footer>
-
-<script>
-/*
-  Behavior:
-  - Users select options (click the .option labels)
-  - Clicking "Submit All" will:
-    * mark correct options with .correct
-    * mark selected wrong options with .wrong
-    * reveal explanations (.explain)
-    * show score
-  - Reset clears selections and UI
-*/
-
-// correct answers mapping (question name -> choice)
-const answers = {
-  q1: 'c',
-  q2: 'b',
-  q3: 'c',
-  q4: 'c'
-};
-
-document.addEventListener('click', (e) => {
-  // allow clicking the label block to select input
-  const opt = e.target.closest('.option');
-  if (opt && !document.body.classList.contains('submitted')) {
-    // mark selection visually
-    const parent = opt.parentElement;
-    // deselect siblings
-    parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
-    // set the hidden input
-    const input = opt.querySelector('input[type="radio"]');
-    if (input) input.checked = true;
-  }
-});
-
-const submitBtn = document.getElementById('submitBtn');
-const resetBtn = document.getElementById('resetBtn');
-const resultWrap = document.getElementById('resultWrap');
-
-function evaluate() {
-  if (document.body.classList.contains('submitted')) return;
-  document.body.classList.add('submitted');
-
-  const questionCards = document.querySelectorAll('.card');
-  let score = 0, total = 0;
-
-  questionCards.forEach(card => {
-    const optionsDiv = card.querySelector('.options');
-    const qName = optionsDiv.getAttribute('data-name'); // q1/q2/...
-    const correct = answers[qName];
-    total++;
-
-    // show explanations
-    const ex = card.querySelector('.explain');
-    if (ex) ex.style.display = 'block';
-
-    // mark each option
-    const opts = optionsDiv.querySelectorAll('.option');
-    let userSelected = null;
-    opts.forEach(o => {
-      const val = o.getAttribute('data-choice');
-      const input = o.querySelector('input[type="radio"]');
-      if (input && input.checked) userSelected = val;
-    });
-
-    opts.forEach(o => o.classList.remove('correct','wrong'));
-
-    // mark correct option
-    const correctEl = optionsDiv.querySelector('.option[data-choice="'+correct+'"]');
-    if (correctEl) correctEl.classList.add('correct');
-
-    // if user selected wrong, mark it
-    if (userSelected && userSelected !== correct) {
-      const wrongEl = optionsDiv.querySelector('.option[data-choice="'+userSelected+'"]');
-      if (wrongEl) wrongEl.classList.add('wrong');
-    }
-
-    // scoring
-    if (userSelected === correct) score++;
-  });
-
-  // show result
-  resultWrap.innerHTML = '';
-  const r = document.createElement('div');
-  r.className = 'result';
-  r.innerHTML = `<strong>Skor: ${score} / ${total}</strong><div style="margin-top:6px;color:var(--muted)">Terima kasih telah mengerjakan!</div>`;
-  resultWrap.appendChild(r);
-
-  // render math (in case explanations contain LaTeX)
-  if (window.MathJax && MathJax.typeset) {
-    MathJax.typeset();
-  }
-}
-
-function resetAll() {
-  document.body.classList.remove('submitted');
-  resultWrap.innerHTML = '';
-  // hide explanations
-  document.querySelectorAll('.explain').forEach(e => e.style.display = 'none');
-  // deselect inputs and selected/wrong/correct classes
-  document.querySelectorAll('.option').forEach(o => {
-    o.classList.remove('selected','wrong','correct');
-    const input = o.querySelector('input[type="radio"]');
-    if (input) input.checked = false;
-  });
-  // smooth scroll to top of quiz
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-submitBtn.addEventListener('click', evaluate);
-resetBtn.addEventListener('click', resetAll);
-
-// ensure MathJax renders after page load
-window.addEventListener('load', () => {
-  if (window.MathJax && MathJax.typeset) MathJax.typeset();
-});
-
-const modeToggle = document.getElementById("modeToggle");
-
-modeToggle.addEventListener("change", function () {
-    document.body.classList.toggle("light-mode");
-});
-</script>
 </body>
 </html>
