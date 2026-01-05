@@ -1,254 +1,140 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booklet Peraturan Math League 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Reset dasar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsi Adrian - Belajar Matematika</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            /* Menggunakan Font Poppins */
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            
-            /* PENGATURAN BACKGROUND SESUAI FILE ANDA */
-            background-image: url('Grand opening.jpg'); 
-            background-size: cover;       /* Gambar memenuhi layar */
-            background-position: center;  /* Gambar di tengah */
-            background-attachment: fixed; /* Background tetap diam saat discroll */
-            background-repeat: no-repeat;
-            
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* Container utama untuk membatasi lebar konten */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Judul Utama Halaman */
-        .main-title {
-            text-align: center;
-            color: #0d7014;
-            text-shadow: 2px 2px 4px rgba(210, 195, 195, 0.812);
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            font-weight: 700;
-            padding-top: 20px;
-        }
-
-        /* Desain "Kartu" atau Halaman Booklet */
-        .booklet-page {
-            /* Latar belakang putih semi-transparan agar teks terbaca */
-            background-color: rgba(255, 255, 255, 0.92);
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        /* Tipografi Headings */
-        h2 {
-            color: #2c5e2e; /* Warna hijau tua menyesuaikan tema alam */
-            border-bottom: 2px solid #2c5e2e;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        h3 {
-            color: #387c3b;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        /* Tipografi Paragraf dan List */
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul, ol {
-            margin-bottom: 15px;
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* Highlight untuk tenggat waktu atau link */
-        .highlight {
-            font-weight: 600;
-            color: #d35400;
-        }
-        
-        .link-text {
-             color: #0056b3;
-             text-decoration: underline;
-        }
-
-        /* Responsif untuk layar kecil (HP) */
-        @media (max-width: 600px) {
-            .main-title {
-                font-size: 1.8rem;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1', // Indigo
+              600: '#4f46e5',
+              700: '#4338ca',
             }
-            .booklet-page {
-                padding: 20px;
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             }
-            h2 {
-                font-size: 1.5rem;
-            }
+          }
         }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Grid Background Pattern */
+    .bg-grid-slate {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    }
+  </style>
 </head>
-<body>
 
-<div class="container">
-    <h1 class="main-title">PERATURAN LOMBA KEILMUAN<br>MATH LEAGUE 2026</h1>
+<body class="bg-slate-50 text-slate-900 font-sans selection:bg-brand-500 selection:text-white overflow-x-hidden relative">
 
-    <div class="booklet-page">
-        <h2>ESAI KREATIF</h2>
-
-        <h3>KETENTUAN UMUM</h3>
-        <ul>
-            <li>Lomba ini merupakan lomba esai kreatif individu dengan tema <strong>“World Expo 2026: The Grand Olympics of Mind, Art, and Strength”</strong>.</li>
-            <li>Setiap angkatan diperbolehkan mengirimkan satu atau lebih peserta untuk mengikuti lomba ini.</li>
-            <li>Peserta mendaftar dan berpartisipasi secara individu, tidak diperkenankan membentuk tim.</li>
-            <li>Peserta diperbolehkan melakukan perubahan data diri selama masa pendaftaran berlangsung. Setelah ditutup, data bersifat final.</li>
-            <li>Peserta wajib berasal dari salah satu program studi di Departemen Matematika FMIPA UI.</li>
-            <li>Setiap peserta hanya diperkenankan mengumpulkan satu karya esai kreatif.</li>
-        </ul>
-
-        <h3>TOPIK DAN TEMA</h3>
-        <p>Topik besar esai adalah <strong>“Peran Kecerdasan Buatan dalam Membentuk Masa Depan Peradaban Global”</strong>. Esai diharapkan mampu merefleksikan keterkaitan kecerdasan buatan dengan aspek intelektual (mind), kreativitas dan budaya (art), serta ketangguhan dan kekuatan manusia (strength).</p>
-        <p>Penilaian didasarkan pada orisinalitas gagasan, kedalaman analisis, kreativitas penyampaian, dan kesesuaian dengan tema.</p>
-
-        <h3>TEKNIS PENULISAN DAN PENGUMPULAN</h3>
-        <ul>
-            <li>Bahasa Indonesia yang baik dan benar (PUEBI).</li>
-            <li>Orisinil, belum pernah dipublikasikan atau menang lomba lain.</li>
-            <li>Panjang: 1.500–2.000 kata (termasuk cover, isi, daftar referensi).</li>
-            <li>Format: Kertas A4, Spasi 1.5, Font Times New Roman ukuran 12.</li>
-            <li>Margin: Kiri 4 cm, Kanan 3 cm, Atas 3 cm, Bawah 3 cm.</li>
-            <li>Wajib mencantumkan Cover (Nama, Prodi/Angkatan, Tema Besar, Topik Esai, Judul Esai).</li>
-            <li>Wajib mencantumkan daftar referensi yang kredibel di halaman terakhir.</li>
-            <li>Nomor halaman di sudut kanan bawah.</li>
-            <li>Pengumpulan: File PDF melalui <span class="link-text">https://bit.ly/SubmisiEsaiKreatifMathLeague2026</span>.</li>
-            <li>Batas waktu: <span class="highlight">Jumat, 23 Januari 2026 pukul 23.59 WIB.</span></li>
-            <li>Format nama file: <code>EsaiKreatif_MathLeague2026_Angkatan_NamaLengkap.pdf</code></li>
-        </ul>
-    </div>
-
-    <div class="booklet-page">
-        <h2>POSTER ILMIAH</h2>
-
-        <h3>TEMA</h3>
-        <p><strong>"Simple Math, World Changing Results"</strong></p>
-        <p>Isi utama membahas bagaimana suatu konsep sederhana dalam matematika dapat mengubah cara dunia bekerja. Fokus pada perbandingan sistem/kehidupan global dengan dan tanpa adanya konsep tersebut.</p>
-
-        <h3>KETENTUAN UMUM</h3>
-        <ul>
-            <li>Perwakilan angkatan: Minimal 1 orang, Maksimal 3 orang per angkatan (Setiap orang hanya 1 poster).</li>
-            <li>Karya wajib orisinal (belum pernah dipublikasikan/menang lomba). Plagiarisme akan didiskualifikasi.</li>
-            <li>Dilarang mengandung unsur SARA, pornografi, provokasi, kekerasan, atau politik.</li>
-            <li>Wajib disertai deskripsi (narasi) minimal 100 kata dan maksimal 300 kata.</li>
-        </ul>
-
-        <h3>FORMAT POSTER</h3>
-        <ul>
-            <li>Digital (Corel Draw, Photoshop, Illustrator, dll).</li>
-            <li>Ukuran: 3508 × 4961 pixels (Setara A3, 150 ppi). Ukuran yang salah akan dikembalikan untuk revisi (24 jam).</li>
-            <li>Format: Portrait.</li>
-            <li>Daftar pustaka diletakkan di bagian bawah poster (Wajib ada referensi untuk data/gambar).</li>
-        </ul>
-
-        <h3>MEKANISME PERLOMBAAN</h3>
-        <p>Terdiri dari 3 tahap: Seleksi Berkas, Voting Online, dan Presentasi.</p>
-
-        <h4>1. Tahap Seleksi Berkas</h4>
-        <ul>
-            <li>Upload ke: <span class="link-text">https://bit.ly/SubmisiPosterIlmiahMathLeague2026</span></li>
-            <li>Batas submisi: <span class="highlight">Rabu, 21 Januari 2026 pukul 23:59 WIB.</span></li>
-            <li>Wajib konfirmasi ke LO setelah pengumpulan.</li>
-            <li>Keterlambatan: Pengurangan 5 poin/jam. Terlambat > 6 jam = Diskualifikasi.</li>
-            <li>File yang dikirim (2 buah):
-                <ol>
-                    <li>File poster (JPG/JPEG/PNG) nama: <code>Berkas_Poster_Angkatan_Nama Lengkap</code></li>
-                    <li>File narasi (PDF, max 500 kata) nama: <code>Berkas_Narasi_Angkatan_Nama Lengkap</code></li>
-                </ol>
-            </li>
-            <li>4 peserta terbaik lanjut ke tahap presentasi.</li>
-        </ul>
-
-        <h4>2. Tahap Online Voting (Juara Favorit)</h4>
-        <ul>
-            <li>Dilakukan di Instagram Math League 2026.</li>
-            <li>Unggah poster: Selasa, 27 Januari 2026 pukul 12.00 WIB (Identitas disembunyikan).</li>
-            <li>Periode voting: 7 hari sejak diunggah.</li>
-            <li>Juara favorit berdasarkan likes terbanyak (tidak mempengaruhi penilaian juara utama).</li>
-        </ul>
-
-        <h4>3. Tahap Presentasi</h4>
-        <ul>
-            <li>Peserta lolos wajib mengirim file presentasi (PDF dari PPT) ke link Google Forms (TBA).</li>
-            <li>Batas pengumpulan file presentasi: <span class="highlight">Senin, 26 Januari 2026 pukul 23.59 WIB.</span></li>
-            <li>Nama file: <code>Presentasi_Poster_Angkatan_Nama Lengkap</code>.</li>
-            <li>Keterlambatan file: -5 poin/jam. Terlambat > 6 jam tidak boleh presentasi.</li>
-            <li>Durasi: 10 menit pemaparan + 10 menit tanya jawab.</li>
-            <li>Wajib mengenakan jaket almamater (jakun).</li>
-        </ul>
-    </div>
-
-    <div class="booklet-page">
-        <h2>PROGRAM KREATIVITAS MAHASISWA (PKM)</h2>
-
-        <h3>A. KETENTUAN UMUM</h3>
-        <ul>
-            <li>Setiap angkatan wajib mengirimkan minimal 3 tim PKM pada cabang berbeda.</li>
-            <li>Satu tim terdiri atas 3–5 mahasiswa satu angkatan (boleh beda program studi di Dept. Matematika).</li>
-            <li>Setiap tim hanya mengajukan satu judul. Anggota hanya boleh jadi ketua di satu cabang.</li>
-            <li>Karya harus orisinal, belum pernah dipublikasikan, belum pernah juara di tingkat setara/lebih tinggi (OIM, PIMNAS, dll), dan belum pernah didanai pemerintah.</li>
-            <li>Lomba terdiri dari 2 tahap: Seleksi Berkas (Proposal) dan Presentasi.</li>
-            <li>Seluruh pemenang wajib lanjut ke PIMNAS jika dinilai berpotensi oleh juri.</li>
-        </ul>
-
-        <h3>B. TAHAP SELEKSI BERKAS (PROPOSAL)</h3>
-        <ul>
-            <li>Mencantumkan nama lengkap dan NPM seluruh anggota.</li>
-            <li>Maksimal 10 halaman (Pendahuluan s.d. Daftar Pustaka).</li>
-            <li>Sistematika sesuai Pedoman PKM Math League 2026. Cover mencantumkan lambang UI.</li>
-            <li>Format nama file: <code>Berkas_Cabang PKM_Tahun Angkatan_Nama Lengkap Ketua</code>.</li>
-            <li>Keterlambatan: -5 poin/jam. Lebih dari 6 jam = Gugur.</li>
-            <li>Juri memilih maksimal 4 tim terbaik per cabang untuk lanjut ke presentasi.</li>
-        </ul>
-
-        <h3>C. TAHAP PRESENTASI</h3>
-        <ul>
-            <li>Tim lolos wajib mengumpulkan berkas presentasi (PDF) sesuai tenggat waktu. Ketua wajib konfirmasi ke LO.</li>
-            <li>Minimal 2 anggota tim wajib hadir. Wajib mengenakan jaket almamater.</li>
-            <li>Keterlambatan pengumpulan file: -5 poin/jam. Lebih dari 10 jam = Diskualifikasi.</li>
-            <li>Peserta terlambat hadir tanpa alasan yang diterima = Nilai 0. Terlambat dengan alasan diterima = Pengurangan nilai 10%.</li>
-            <li>Waktu: 10 menit pemaparan + 10 menit tanya jawab.</li>
-        </ul>
-    </div>
+<div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute inset-0 bg-grid-slate z-0"></div>
     
-    <p style="text-align: center; color: white; font-size: 0.9rem; margin-top: 20px;">&copy; Math League 2026 Committee</p>
-
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
 </div>
+
+<nav class="sticky top-4 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl px-6 py-4 flex justify-between items-center transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+    
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
+        R
+      </div>
+      <h1 class="text-xl font-bold tracking-tight text-slate-800">
+        Responsi<span class="text-brand-600">Adrian</span>
+      </h1>
+    </div>
+
+    <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+      <a href="#" class="hover:text-brand-600 transition-colors">Beranda</a>
+      <a href="#" class="hover:text-brand-600 transition-colors">Tentang</a>
+      <a href="#" class="hover:text-brand-600 transition-colors">Kontak</a>
+    </div>
+  </div>
+</nav>
+
+<section class="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-32 text-center lg:pt-32">
+  
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-100 shadow-sm mb-8 animate-fade-in-up">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+    </span>
+    <span class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Semester Genap 2026</span>
+  </div>
+
+  <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.15] tracking-tight text-slate-900 animate-fade-in-up [animation-delay:100ms]">
+    Belajar Matematika <br class="hidden md:block" />
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-purple-600 to-brand-600">
+      Lebih Jelas & Terstruktur
+    </span>
+  </h2>
+
+  <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up [animation-delay:200ms]">
+    Platform responsi interaktif untuk mahasiswa. Akses materi ringkas, latihan soal bertahap, dan pembahasan sistematis dalam satu tempat.
+  </p>
+
+  <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up [animation-delay:300ms]">
+    <a href="course.html?mk=kalkulus" class="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-brand-600 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-600 hover:-translate-y-1 shadow-lg shadow-brand-500/30 overflow-hidden">
+        <span class="absolute inset-0 w-full h-full -mt-10 transition-all duration-700 opacity-0 bg-gradient-to-b from-white via-transparent to-transparent group-hover:opacity-20"></span>
+        <span class="mr-2">📘</span>
+        Kalkulus 2
+        <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+    </a>
+
+    <a href="course.html?mk=aljabar" class="group inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-slate-700 transition-all duration-200 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:text-brand-600 hover:-translate-y-1 shadow-sm hover:shadow-md">
+      <span class="mr-2">📗</span>
+      Aljabar Linear
+    </a>
+  </div>
+
+  <div class="mt-16 pt-8 border-t border-slate-200/60 max-w-3xl mx-auto animate-fade-in-up [animation-delay:500ms]">
+    <p class="text-sm text-slate-400 font-medium mb-4">Didukung oleh materi dari:</p>
+    <div class="flex justify-center items-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        <span class="font-bold text-lg text-slate-800">Departemen Matematika</span>
+    </div>
+  </div>
+
+</section>
 
 </body>
 </html>
